@@ -1,0 +1,23 @@
+.env
+node_modules/
+dist/
+.cache/
+.local-tools/
+.online-run/
+.pnpm-store/
+uploads/
+outputs/html/
+outputs/pdf/
+ONLINE-LINK.txt
+bookings_time_itinerary.db
+bookings_time_itinerary.db-*
+*.log
+*.zip
+.DS_Store
+Bookings Time Local App.app/
+bookings-time-online-ready*/
+work/
+*.command
+com.bookingstime.local-itinerary.plist
+START-HERE.txt
+START-ONLINE.txt

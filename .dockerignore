@@ -1,0 +1,17 @@
+.env
+.git
+.cache
+.pnpm-store
+.local-tools
+.online-run
+node_modules
+dist
+uploads
+outputs
+bookings_time_itinerary.db
+bookings_time_itinerary.db-*
+*.log
+*.zip
+.DS_Store
+Bookings Time Local App.app
+work
