@@ -15,6 +15,7 @@ export async function generatePdfFromHtml({ htmlPath, pdfPath }) {
 
   const browser = await chromium.launch({
     headless: true,
+    executablePath: process.env.CHROME_EXECUTABLE_PATH || undefined,
     args: ["--no-sandbox", "--disable-dev-shm-usage"],
   });
 
