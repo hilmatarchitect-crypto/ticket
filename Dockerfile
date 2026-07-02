@@ -2,9 +2,11 @@ FROM node:20-bookworm-slim
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
+    build-essential \
     chromium \
     fonts-noto-core \
     fonts-noto-extra \
+    python3 \
   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /home/node/app
