@@ -1,0 +1,27 @@
+name: Deploy Bookings Time
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Hugging Face CLI
+        run: |
+          curl -LsSf https://hf.co/cli/install.sh | bash
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Publish Space
+        env:
+          HF_OIDC_RESOURCE: spaces/HILMAT/bookings-time-itinerary
+        run: >
+          hf upload HILMAT/bookings-time-itinerary . .
+          --repo-type space
+          --commit-message "Deploy from GitHub ${GITHUB_SHA::7}"
