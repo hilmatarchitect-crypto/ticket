@@ -1,21 +1,27 @@
-FROM mcr.microsoft.com/playwright:v1.53.2-noble
-
-WORKDIR /app
+FROM node:20-bookworm-slim
 
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends fonts-noto-core fonts-noto-extra \
+  && apt-get install -y --no-install-recommends \
+    chromium \
+    fonts-noto-core \
+    fonts-noto-extra \
   && rm -rf /var/lib/apt/lists/*
 
-COPY package.json ./
+WORKDIR /home/node/app
+
+COPY --chown=node:node package.json ./
+ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+USER node
 RUN npm install
 
-COPY . .
+COPY --chown=node:node . .
 RUN npm run build
 
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
-ENV PORT=10000
+ENV PORT=7860
+ENV CHROME_EXECUTABLE_PATH=/usr/bin/chromium
 
-EXPOSE 10000
+EXPOSE 7860
 
 CMD ["npm", "start"]
